@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 """Wildbeirres parser , result save to csv file"""
-import logging  # логгирование
-import collections
-import csv
-import re
-
-import bs4
 import requests
+import bs4
+
+import csv
+import collections
+
+import logging  # логирование
+
+from random import choice
+from random import uniform
+from time import sleep
 
 import config
 
@@ -30,10 +34,13 @@ class Client():
 		self.result = []
 
 
-	def get_page(self, page):
+	def get_page(self, page, proxy=None):
 		"""загрузка страницы"""
 		url = config.url_parse + '?page=' + str(page)
-		res = self.session.get(url)
+		proxy = {'http' : 'http://'+proxy}
+		logger.debug(proxy['http'])
+
+		res = self.session.get(url, proxies=proxy)
 		try:
 			res.raise_for_status()
 			return res.text
@@ -41,9 +48,9 @@ class Client():
 			logger.error('Ошибка при загрузке страницы: ' + str(e))
 
 
-	def parse_page(self, text):
+	def parse_page(self, html):
 		"""парсит страницу и возвращает карточки товаров"""
-		soup = bs4.BeautifulSoup(text, 'lxml')
+		soup = bs4.BeautifulSoup(html, 'lxml')
 		container = soup.select('div.dtList.i-dtList.j-card-item')
 		for block in container:
 			self.parse_block(block)
@@ -105,18 +112,29 @@ class Client():
 				writer.writerow(elem)
 
 
+	def read_proxy_list(self):
+		"""получить прокси ip из файла"""
+		with open('proxy.txt', 'r') as f:
+			ip = f.read().split('\n')
+		return ip
+
+
 	def run(self):
 		"""запуск функций сбора данных"""
+		proxies = self.read_proxy_list()
 		for page in range(1,88):
-			text = self.get_page(str(page))
+			sleep(uniform(0,5))  # задержка
+			text = self.get_page(str(page), choice(proxies))
 			if text:
 				self.parse_page(text)
 				logger.info(f'получили {len(self.result)} элементов')
 			else:
 				break
+
 		self.save_to_csv()
 
 
 if __name__ == '__main__':
 	parser = Client()
 	parser.run()
+	
