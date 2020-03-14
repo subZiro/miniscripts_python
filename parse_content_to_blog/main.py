@@ -14,7 +14,7 @@ from random import choice
 import logging
 
 headers = {
-	'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+	'User-Agent': '',
 	'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
 	}
 url_index = 'https://www.say7.info/cook/'
