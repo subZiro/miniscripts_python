@@ -22,3 +22,7 @@ parse_content_to_blog
 	main - основная программа
 	proxy.txt - прокси адреса для сбора информации
 	parse.csv - результат сбора информации
+	
+	
+parse_content_to_blog
+==========
