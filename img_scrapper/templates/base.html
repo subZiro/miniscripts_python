@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}{% endblock %} | Flask app
+	</title>
+
+	<link rel="shortcut icon" href="../favicon.ico">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/elastislide.css') }}" />
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+	<noscript>
+		<style>
+			.es-carousel ul{
+				display:block;
+			}
+		</style>
+	</noscript>
+	<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+		<div class="rg-image-wrapper">
+			<div class="rg-image"></div>
+			<div class="rg-loading"></div>
+			<div class="rg-caption-wrapper">
+				<div class="rg-caption" style="display:none;">
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</script>
+</head>
+
+<body>
+
+	{% block content %}
+	{% endblock %}
+  
+	<script>
+		const wrapper = document.querySelector(".input-wrapper"),
+		textInput = document.querySelector("input[type='text']");
+		textInput.addEventListener("keyup", event => {
+			wrapper.setAttribute("data-text", event.target.value);
+		});
+	</script>
+
+</body>
+</html>
