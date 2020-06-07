@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from time import sleep
 
-import config
+from config import Config
 
 
 def auth(driver, user, id_user):
@@ -70,11 +70,12 @@ def record_to_doc(driver):
 
 
 def main():
-	driver = webdriver.Chrome(config.chromedriver)
-	driver.get(config.url)
+	driver = webdriver.Chrome(Config.CHROMEDRIVER)
+	print(Config.URL_TO_DOCTOR)
+	driver.get(Config.URL_TO_DOCTOR)
 	#--авторизация--#
 	driver.find_element_by_css_selector('a.btn.blue').click()
-	auth(driver, config.s_name, config.id_user)
+	auth(driver, Config.USER_NAME, Config.USER_ID)
 	# --получение кнопок для записи к специалисту-- #
 	all_btn = get_btn_to_record(driver)
 	# --если есть свободные места для записи, записываем в первую свободную-- #
