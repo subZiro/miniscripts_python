@@ -17,6 +17,8 @@ USER_ID = Config.USER_ID
 
 
 def auth(driver, user, id_user):
+	"""Авторизация на сайте"""
+
 	# --ожидание появления всплывающего окна-- #
 	driver.implicitly_wait(6) # ждём 6 секунд, по умолчанию - 0
 	driver.window_handles 
@@ -39,7 +41,8 @@ def auth(driver, user, id_user):
 
 
 def get_btn_to_record(driver):
-	'''--получение кликабельных конпок для записи--'''
+	"""получение кликабельных конпок для записи"""
+
 	#btn_grey = driver.find_elements(By.TAG_NAME, 'Не активный номерок (откроется в 20.00)')
 	#btn_orange = driver.find_elements(By.TAG_NAME, 'Номерок занят')
 	btn_all = driver.find_elements_by_css_selector('a.btn.green')
@@ -48,7 +51,8 @@ def get_btn_to_record(driver):
 
 
 def get_not_empty_btn(driver, btn_grey):
-	'''--кликание по всем полученым кнопкам записи--'''
+	"""кликание по всем полученым кнопкам записи"""
+
 	flg = False
 	for elem in btn_grey:
 		try:
@@ -61,7 +65,8 @@ def get_not_empty_btn(driver, btn_grey):
 
 
 def record_to_doc(driver):
-	'''запись к специалисту'''
+	"""запись к специалисту"""
+
 	try:
 		btn_wait = WebDriverWait(driver, 15).until(
 			EC.visibility_of_element_located((By.ID,'zapis-Записаться'))).click()
@@ -75,6 +80,8 @@ def record_to_doc(driver):
 
 
 def main():
+	"""функция запуска всего скрипта"""
+	
 	driver = webdriver.Chrome(CHROMEDRIVER)
 	print(URL_TO_DOCTOR)
 	driver.get(URL_TO_DOCTOR)
