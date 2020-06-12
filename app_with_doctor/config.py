@@ -3,13 +3,13 @@
 
 import os
 import json
-  
-  
+
+
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 with open(BASEDIR + '/config.json', 'r') as f:
 	config_json = json.load(f)
 
-
+		
 class Config:
 	"""Конфигурационные параметры преложения"""
 
@@ -21,8 +21,3 @@ class Config:
 
 if __name__ == '__main__':
 	print('(-_-)')
-else:
-	BASEDIR = os.path.abspath(os.path.dirname(__file__))
-	with open(BASEDIR + '/config.json', 'r') as f:
-		config_json = json.load(f)
-
