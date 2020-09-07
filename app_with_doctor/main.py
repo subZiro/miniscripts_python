@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from time import sleep
 
@@ -14,6 +15,7 @@ CHROMEDRIVER = Config.CHROMEDRIVER
 URL_TO_DOCTOR = Config.URL_TO_DOCTOR
 USER_NAME = Config.USER_NAME
 USER_ID = Config.USER_ID
+
 
 
 def auth(driver, user, id_user):
@@ -81,9 +83,12 @@ def record_to_doc(driver):
 
 def main():
 	"""функция запуска всего скрипта"""
+
+	options = webdriver.ChromeOptions()
+	options.add_argument('headless')  # для открытия headless-браузера
+	driver = webdriver.Chrome(executable_path=CHROMEDRIVER, chrome_options=options)
 	
-	driver = webdriver.Chrome(CHROMEDRIVER)
-	print(URL_TO_DOCTOR)
+	print('открытие {}'.format(URL_TO_DOCTOR))
 	driver.get(URL_TO_DOCTOR)
 	#--авторизация--#
 	driver.find_element_by_css_selector('a.btn.blue').click()
