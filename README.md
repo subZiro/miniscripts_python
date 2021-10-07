@@ -44,3 +44,9 @@
 ==========
 	Скрипт сбора изображений с сайта 
 	
+
+[en_de_crypt_files](https://github.com/subZiro/miniscripts_python/tree/master/en_de_crypt_files)
+==========
+	Шифрование/Дешифрование файлов
+
+	
