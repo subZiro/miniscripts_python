@@ -17,6 +17,14 @@ decrypt
 		source venv/bin/activate
 	установка необходимых зависимостей:
 		pip3 install -r requirements.txt
-	установка необходимых переменных:
-	export FLASK_ENV=development
+	установка необходимых ключа:
+	export CRYPT_KEY='ваше значение'
+
+Шифрование:
+==========
+	python3 encrypt.py
+
+Дешифрование:
+==========
+	python3 decrypt.py
 

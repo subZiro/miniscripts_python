@@ -1,1 +1,1 @@
-PyAesCrypt
+PyAesCrypt==6.0.0
